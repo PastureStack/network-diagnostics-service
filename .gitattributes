@@ -1,0 +1,6 @@
+* text=auto eol=lf
+scripts/* text eol=lf
+*.sh text eol=lf
+
+LICENSE text eol=crlf
+LICENSES/** text eol=lf
