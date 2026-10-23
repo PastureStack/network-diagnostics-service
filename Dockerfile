@@ -1,4 +1,11 @@
-FROM golang:1.27.0-bookworm@sha256:484ef6066fa69acb059fdfeda7ba2b8f7391f2ef6abc6f9b8411e669ebd56466 AS build
+FROM golang:1.27.3-bookworm@sha256:972b4110ba0f47539a975c31e52c64765e1ff19f2d74469ae4a595c6676e80a5 AS build
+
+ADD --checksum=sha256:b9f76b5271a7ac373fd5e7e1b5b826a71ddd702b42a0d104955ecb1acfffc94b \
+    https://security.debian.org/debian-security/pool/updates/main/c/ca-certificates/ca-certificates_20250419~deb12u2_all.deb \
+    /tmp/ca-certificates.deb
+RUN dpkg -i /tmp/ca-certificates.deb \
+    && test "$(dpkg-query -W -f='${Version}' ca-certificates)" = '20250419~deb12u2' \
+    && rm -f /tmp/ca-certificates.deb
 
 ARG VERSION=dev
 ARG SOURCE_DATE_EPOCH=0
