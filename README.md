@@ -4,6 +4,8 @@ Current source builds use Go 1.27.3 while the Go language minimum remains 1.26.0
 
 This repository provides the authenticated aggregation and bundle service used by PastureStack Network Diagnostics. It receives pseudonymous, bounded counter snapshots from one agent per managed host, applies independent validation and retention limits, and creates downloadable ZIP bundles for an authorized operator.
 
+The current published Linux release is [v0.2.1](https://github.com/PastureStack/network-diagnostics-service/releases/tag/v0.2.1).
+
 PastureStack is an independent community effort to preserve, audit, and modernize the Rancher 1.6 ecosystem. It is not affiliated with or endorsed by Rancher Labs or SUSE.
 
 **Historical upstream reference:** [`rancher/network-diagnostics`](https://github.com/rancher/network-diagnostics). GitHub retains the fork relationship for provenance, but that upstream repository has no repository-level license. The public `main` branch, release source, and container image therefore contain only the new PastureStack implementation and do not redistribute the upstream source tree or Git history. See `LICENSING.md` and `ORIGIN.md`.
@@ -17,7 +19,7 @@ docker run --rm \
   -p 8080:8080 \
   -e PASTURESTACK_DIAGNOSTICS_TOKEN='replace-with-a-random-secret-of-at-least-32-characters' \
   -v diagnostics-data:/var/lib/pasturestack-network-diagnostics \
-  ghcr.io/pasturestack/network-diagnostics-service:v0.2.0
+  ghcr.io/pasturestack/network-diagnostics-service:v0.2.1
 ```
 
 The container runs as numeric user `65532` from a shell-free image. Snapshot and bundle files are created with mode `0600`; storage directories use mode `0700`.
@@ -59,7 +61,7 @@ The default command remains the deterministic aggregation-policy planner. The de
 go test ./...
 go vet ./...
 go build -trimpath -o bin/network-diagnostics-service ./cmd/network-diagnostics-service
-docker build --build-arg VERSION=v0.2.0 -t network-diagnostics-service:v0.2.0 .
+docker build --build-arg VERSION=v0.2.1 -t network-diagnostics-service:v0.2.1 .
 ```
 
 Run `sh scripts/validate.sh` on Unix-like systems or `pwsh -File scripts/validate.ps1` on Windows for formatting, repeated tests, vetting, module verification, and reproducible-build checks.
