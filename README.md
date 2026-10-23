@@ -1,5 +1,7 @@
 # Network Diagnostics Service
 
+Current source builds use Go 1.27.3 while the Go language minimum remains 1.26.0. The scratch runtime receives its CA bundle from the checksum-pinned Debian bookworm `ca-certificates` 20250419~deb12u2 package. These source inputs take effect in newly built artifacts; existing published release coordinates below describe their original artifacts.
+
 This repository provides the authenticated aggregation and bundle service used by PastureStack Network Diagnostics. It receives pseudonymous, bounded counter snapshots from one agent per managed host, applies independent validation and retention limits, and creates downloadable ZIP bundles for an authorized operator.
 
 PastureStack is an independent community effort to preserve, audit, and modernize the Rancher 1.6 ecosystem. It is not affiliated with or endorsed by Rancher Labs or SUSE.
